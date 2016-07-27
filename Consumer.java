@@ -91,7 +91,7 @@ public class Consumer {
                 recordNumber = recordNumber+1;
                 System.out.println(recordNumber);
                 
-        		int company_Id = Calendar.getInstance().getTime().getSeconds()
+        		int Id = Calendar.getInstance().getTime().getSeconds()
         				+ Calendar.getInstance().getTime().getMinutes()
         				+ Calendar.getInstance().getTime().getHours();
         		CassandraUpdater.pumpData(new Long(company_Id), new HashMap<String, String>());
