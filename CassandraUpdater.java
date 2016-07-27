@@ -28,37 +28,30 @@ public class CassandraUpdater {
 		
 	}
 
-	public static void pumpData(Long company_id, HashMap<String, String> hMap) {
+	public static void pumpData(Long id, HashMap<String, String> hMap) {
 
-		// queries
-		String query1 = "INSERT INTO company_impressions  (  company_id,ipd_campaign,access_point,time_UUID,"
-				+ "session_id,yyyymmdd,impression_ts,  impression_properties,TTL)  VALUES ("
-				+ company_id
-				+ ",'payroll_campaign','qbo_right_nav',NOW(), '99989983232asaswqwq',"
-				+ "20160622201,201605052001,  { 'property4'  : 'value4',   'property3'  : 'value3'}, 'TTL');";
+	
 
-		String query2 = "INSERT INTO company_recommendation_dismiss  (  company_id,ipd_campaign,  access_point,"
-				+ "time_UUID,URL,impression_ts, TTL)  VALUES ("
-				+ company_id
-				+ ",'payroll_campaign','qbo_right_nav',NOW(), "
-				+ "'www.qbo.intuit.com/access ',201605052201,  'TTL'  );";
+		String query2 = "INSERT INTO Table1  (  id,ampaign, point,"
+				+ "time_UUID,URL,n_ts, TTL)  VALUES ("
+				+ id
+				+ ",'gampaign','t_nav',NOW(), "
+				+ "",  'TTL'  );";
 
 		// Creating Cluster object
 		Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1")
 				.build();
 
 		// Creating Session object
-		Session session = cluster.connect("fingerprints_feedback");
+		Session session = cluster.connect("ff"); // your KeySpace
 
 		// Executing the query
-		session.execute(query1);
+	
 
 		session.execute(query2);
 
 		session.close();
 		cluster.close();
-
-		System.out.println("Data created-->>"+company_id);
 
 	}
 
